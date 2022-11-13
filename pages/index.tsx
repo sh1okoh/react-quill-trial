@@ -1,11 +1,13 @@
 import dynamic from "next/dynamic";
 import React, { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
-const ReactQuill = dynamic(import('react-quill'), { ssr: false, loading: () => <p>Loading ...</p> }
-);
+const { ReactQuill, Quill  } = dynamic(import('react-quill'), { ssr: false, loading: () => <p>Loading ...</p> });
+
+// const BubbleTheme = Quill.import("themes/bubble");
 
 export default function Home() {
   const [value, setValue] = useState('');
+  console.log('value', value);
 
   const modules = {
     toolbar: [
@@ -24,5 +26,5 @@ export default function Home() {
     'link', 'image'
   ]
 
-  return <ReactQuill theme="snow" modules={modules} formats={formats} value={value} onChange={setValue} />;
+  return <ReactQuill theme="snow" modules={modules} formats={formats} onChange={setValue}/>
 }
